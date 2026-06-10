@@ -86,7 +86,7 @@ const defaultOrders: Order[] = [
                 name: "Banarasi Silk Saree",
                 price: 12500,
                 quantity: 1,
-                image: "/images/boutique/home-hero-v2.png"
+                image: "https://images.unsplash.com/photo-1615886753866-79396abc446e?q=80&w=800&auto=format&fit=crop"
             }
         ],
         shippingAddress: defaultAddresses[0],
@@ -105,7 +105,7 @@ const defaultOrders: Order[] = [
                 name: "Designer Kurti Set",
                 price: 4500,
                 quantity: 1,
-                image: "/images/boutique/home-hero-v2.png"
+                image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop"
             }
         ],
         shippingAddress: defaultAddresses[0],
@@ -155,7 +155,7 @@ const defaultReviews: Review[] = [
         id: "rev_1",
         productId: "prod_1",
         productName: "Banarasi Silk Saree",
-        productImage: "/images/boutique/home-hero-v2.png",
+        productImage: "https://images.unsplash.com/photo-1615886753866-79396abc446e?q=80&w=800&auto=format&fit=crop",
         rating: 5,
         content: "Absolutely love the quality and craftsmanship. The delivery was quick too!",
         date: "2026-06-03T10:30:00Z",

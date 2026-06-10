@@ -4,12 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const categories = [
-  { id: 1, name: "Ethnic Wear", image: "/images/boutique/home-hero-v2.png" },
-  { id: 2, name: "Western Wear", image: "/images/boutique/home-hero-v2.png" },
-  { id: 3, name: "Bottom Wear", image: "/images/boutique/home-hero-v2.png" },
-  { id: 4, name: "Party Wear", image: "/images/boutique/home-hero-v2.png" },
-  { id: 5, name: "Office Wear", image: "/images/boutique/home-hero-v2.png" },
-  { id: 6, name: "Seasonal\nCollections", image: "/images/boutique/home-hero-v2.png" },
+  { id: 1, name: "Ethnic Wear", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop" },
+  { id: 2, name: "Western Wear", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600&auto=format&fit=crop" },
+  { id: 3, name: "Bottom Wear", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=600&auto=format&fit=crop" },
+  { id: 4, name: "Party Wear", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?q=80&w=600&auto=format&fit=crop" },
+  { id: 5, name: "Office Wear", image: "https://images.unsplash.com/photo-1598554747436-c9293d6a588f?q=80&w=600&auto=format&fit=crop" },
+  { id: 6, name: "Seasonal\nCollections", image: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=600&auto=format&fit=crop" },
 ];
 
 export default function HomeCategories() {

@@ -12,7 +12,7 @@ const reviewsRow1 = [
     role: "Regular Customer",
     content: "Fast delivery and fantastic quality! The customer support team was quick to resolve my query. The boutique has earned a loyal customer.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const reviewsRow1 = [
     role: "Verified Buyer",
     content: "Beautiful elegant designs and excellent customer service. I bought a party wear dress and it exceeded my expectations in every way.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&auto=format&fit=crop",
     highlighted: true
   },
   {
@@ -29,7 +29,7 @@ const reviewsRow1 = [
     role: "Verified Buyer",
     content: "Their western wear collection is so chic. The material is premium and comfortable for all-day office wear. My new go-to boutique.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const reviewsRow1 = [
     role: "Bride-to-be",
     content: "The ethnic wear is stunning. Perfect fitting and elegant designs. They really know how to make a woman feel special with their collections.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const reviewsRow1 = [
     role: "Verified Buyer",
     content: "Absolutely love the craftsmanship. Every detail is perfect. I will definitely be shopping here again for my next big event.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop"
   }
 ];
 
@@ -56,7 +56,7 @@ const reviewsRow2 = [
     role: "Regular Customer",
     content: "Fast delivery and fantastic quality! The customer support team was quick to resolve my query. They have earned a loyal customer.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: 7,
@@ -64,7 +64,7 @@ const reviewsRow2 = [
     role: "Verified Buyer",
     content: "Beautiful elegant designs and excellent customer service. I bought a party wear dress and it exceeded my expectations in every way.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: 8,
@@ -72,7 +72,7 @@ const reviewsRow2 = [
     role: "Verified Buyer",
     content: "Their western wear collection is so chic. The material is premium and comfortable for all-day office wear. My new go-to boutique.",
     rating: 4,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: 9,
@@ -80,7 +80,7 @@ const reviewsRow2 = [
     role: "Bride-to-be",
     content: "The ethnic wear is stunning. Perfect fitting and elegant designs. They really know how to make a woman feel special with their collections.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: 10,
@@ -88,7 +88,7 @@ const reviewsRow2 = [
     role: "Verified Buyer",
     content: "Incredible attention to detail. The dress fit me perfectly and the fabric feels so luxurious. Highly recommend to anyone looking for quality.",
     rating: 5,
-    image: "/images/boutique/home-hero-v2.png"
+    image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=150&auto=format&fit=crop"
   }
 ];
 

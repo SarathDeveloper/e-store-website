@@ -16,7 +16,7 @@ export default function NewArrivalsSlider() {
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
   // Use a subset of products for "New Arrivals"
-  const newArrivals = products.slice(0, 8);
+  const newArrivals = products.slice(7, 15);
 
   const handleQuickView = (product: Product) => {
     setSelectedProduct(product);

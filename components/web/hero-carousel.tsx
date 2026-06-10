@@ -16,7 +16,7 @@ const slides = [
     description: "Explore elegant styles crafted for every occasion.",
     cta: "Shop Collection",
     link: "/shop",
-    image: "/images/boutique/home-hero-v2.png", // fallback placeholder
+    image: "https://images.unsplash.com/photo-1589465885857-44edb59bbff2?q=80&w=1200&auto=format&fit=crop", // fallback placeholder
     bgColor: "bg-[#fbf9f6]",
   },
   {
@@ -25,7 +25,7 @@ const slides = [
     description: "Celebrate every moment in style.",
     cta: "Explore Festive Wear",
     link: "/shop?category=seasonal-collections",
-    image: "/images/boutique/home-hero-v2.png",
+    image: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=1200&auto=format&fit=crop",
     bgColor: "bg-primary/5",
   },
   {
@@ -34,7 +34,7 @@ const slides = [
     description: "Stay ahead of fashion trends.",
     cta: "View New Arrivals",
     link: "/shop",
-    image: "/images/boutique/home-hero-v2.png",
+    image: "https://images.unsplash.com/photo-1615886753866-79396abc446e?q=80&w=1200&auto=format&fit=crop",
     bgColor: "bg-[#e2d8f3]/30",
   },
   {
@@ -43,7 +43,7 @@ const slides = [
     description: "Limited-time offer on premium collections.",
     cta: "Shop Now",
     link: "/shop",
-    image: "/images/boutique/home-hero-v2.png",
+    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1200&auto=format&fit=crop",
     bgColor: "bg-zinc-50",
   },
 ];
@@ -69,11 +69,11 @@ export default function HeroCarousel() {
   }, [emblaApi, onSelect]);
 
   return (
-    <div className="relative w-full rounded-[2.5rem] overflow-hidden mt-6 shadow-sm border border-zinc-100 group">
+    <div className="relative w-full rounded-2xl overflow-hidden mt-6 shadow-sm border border-zinc-100 group">
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {slides.map((slide, index) => (
-            <div key={slide.id} className={cn("flex-[0_0_100%] min-w-0 relative h-[500px] md:h-[600px]", slide.bgColor)}>
+            <div key={slide.id} className={cn("flex-[0_0_100%] min-w-0 relative h-[300px] md:h-[400px]", slide.bgColor)}>
               <div className="absolute inset-0 bg-linear-to-r from-black/40 to-transparent md:bg-none z-10" />
               <div className="container mx-auto px-6 lg:px-12 h-full flex items-center relative z-20">
                 <div className="w-full md:w-1/2 space-y-6">

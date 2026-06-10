@@ -14,7 +14,7 @@ export default function DealportHero() {
         {/* We use a placeholder image that matches the boutique vibe, or just a solid color with text if image isn't available. */}
         <div className="absolute inset-0 z-0">
             <Image
-                src="/images/boutique/home-hero-v2.png" 
+                src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1200&auto=format&fit=crop"
                 alt="Banner"
                 fill
                 className="object-cover opacity-50"

@@ -5,11 +5,11 @@ import { Instagram } from "lucide-react";
 import Link from "next/link";
 
 const galleryImages = [
-  { id: 1, src: "/images/boutique/home-hero-v2.png", span: "md:col-span-2 md:row-span-2" },
-  { id: 2, src: "/images/boutique/home-hero-v2.png", span: "md:col-span-1 md:row-span-1" },
-  { id: 3, src: "/images/boutique/home-hero-v2.png", span: "md:col-span-1 md:row-span-1" },
-  { id: 4, src: "/images/boutique/home-hero-v2.png", span: "md:col-span-1 md:row-span-1" },
-  { id: 5, src: "/images/boutique/home-hero-v2.png", span: "md:col-span-1 md:row-span-1" },
+  { id: 1, src: "https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?q=80&w=800&auto=format&fit=crop", span: "md:col-span-2 md:row-span-2" },
+  { id: 2, src: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=800&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" },
+  { id: 3, src: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" },
+  { id: 4, src: "https://images.unsplash.com/photo-1551537482-f2075a1d41f2?q=80&w=800&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" },
+  { id: 5, src: "https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?q=80&w=800&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" },
 ];
 
 export default function InstagramGallery() {

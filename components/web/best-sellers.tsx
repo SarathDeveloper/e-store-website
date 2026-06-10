@@ -11,8 +11,8 @@ export default function BestSellers() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
-  // Use a different subset of products for "Best Sellers", maybe items 2 to 6
-  const bestSellers = products.slice(1, 5);
+  // Use a different subset of products for "Best Sellers"
+  const bestSellers = products.slice(15, 19);
 
   const handleQuickView = (product: Product) => {
     setSelectedProduct(product);
@@ -23,8 +23,8 @@ export default function BestSellers() {
     <section className="py-16 bg-white border-t border-zinc-100">
       <div className="flex justify-between items-end mb-10">
         <div>
-          <h2 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight mb-2">Best Selling Kurtis</h2>
-          <p className="text-xs md:text-sm text-muted-foreground">Our most loved and highest-rated kurti designs.</p>
+          <h2 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight mb-2">Best Sellers</h2>
+          <p className="text-xs md:text-sm text-muted-foreground">Our most loved and highest-rated designs.</p>
         </div>
         <Link
           href="/shop?collection=bestsellers"

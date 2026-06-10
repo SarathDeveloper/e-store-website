@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import DealportHero from "@/components/web/dealport-hero";
+import HeroCarousel from "@/components/web/hero-carousel";
 import HomeCategories from "@/components/web/home-categories";
 import FeaturedCollection from "@/components/web/featured-collection";
 import ShopPromoBanner from "@/components/web/shop-promo-banner";
@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white font-sans overflow-x-hidden">
       <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
-        <DealportHero />
+        <HeroCarousel />
         <HomeCategories />
         <FeaturedCollection />
         <ShopPromoBanner />

@@ -23,7 +23,7 @@ export default function AboutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
                     <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-zinc-100 border border-zinc-100 shadow-sm">
                         <Image
-                            src="/images/boutique/home-hero-v2.png"
+                            src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1200&auto=format&fit=crop"
                             alt="Our boutique tailoring process"
                             fill
                             className="object-cover"

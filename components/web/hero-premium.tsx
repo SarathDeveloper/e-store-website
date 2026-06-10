@@ -1,10 +1,33 @@
 "use client";
 
-import { ShoppingBag, Scissors, Phone, MessageCircle, Star, Sparkles, CheckCircle2 } from "lucide-react";
+import { ShoppingBag, Scissors, Phone, MessageCircle, Star, Sparkles, CheckCircle2, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
+const CAROUSEL_IMAGES = [
+    "https://images.unsplash.com/photo-1615886753866-79396abc446e?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1550614000-4b95d4662247?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1583391733958-d25e07fac04f?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1617260714777-62283dfa3205?q=80&w=800&auto=format&fit=crop"
+];
 
 export default function HeroPremium() {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const nextImage = () => {
+        setCurrentImageIndex((prev) => (prev + 1) % CAROUSEL_IMAGES.length);
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prev) => (prev - 1 + CAROUSEL_IMAGES.length) % CAROUSEL_IMAGES.length);
+    };
+    
+    useEffect(() => {
+        const timer = setInterval(nextImage, 5000);
+        return () => clearInterval(timer);
+    }, []);
+
     return (
         <section className="relative overflow-hidden bg-[#fbf9f6] py-10 md:py-16 lg:py-20 rounded-[3.5rem] shadow-[inset_0_-40px_100px_rgba(0,0,0,0.02)] border border-primary/5 mt-6">
             {/* Elegant Background Blobs */}
@@ -106,16 +129,47 @@ export default function HeroPremium() {
                     <div className="flex-1 w-full max-w-lg lg:max-w-none relative mt-8 lg:mt-0">
                         {/* Main Image Frame - Custom clean landscape shape */}
                         <div className="relative aspect-4/3 w-full rounded-3xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] bg-zinc-100 z-10 group ring-4 ring-white">
-                            <Image
-                                src="/images/boutique/home-hero-v2.png"
-                                alt="Premium Saree Boutique"
-                                fill
-                                className="object-cover object-center transition-transform duration-10000 ease-out group-hover:scale-105"
-                                priority
-                            />
+                            {CAROUSEL_IMAGES.map((src, index) => (
+                                <Image
+                                    key={src}
+                                    src={src}
+                                    alt={`Premium Boutique Image ${index + 1}`}
+                                    fill
+                                    className={`object-cover object-center transition-all duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'}`}
+                                    priority={index === 0}
+                                />
+                            ))}
 
                             {/* Inner gradient overlay for depth */}
-                            <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-60" />
+                            <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-60 z-20 pointer-events-none" />
+
+                            {/* Carousel Arrows */}
+                            <button 
+                                onClick={prevImage}
+                                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-zinc-800 flex items-center justify-center backdrop-blur-sm shadow-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 outline-none"
+                                aria-label="Previous image"
+                            >
+                                <ChevronLeft className="w-5 h-5" />
+                            </button>
+                            <button 
+                                onClick={nextImage}
+                                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/80 hover:bg-white text-zinc-800 flex items-center justify-center backdrop-blur-sm shadow-md transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 outline-none"
+                                aria-label="Next image"
+                            >
+                                <ChevronRight className="w-5 h-5" />
+                            </button>
+                            
+                            {/* Dots */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+                                {CAROUSEL_IMAGES.map((_, i) => (
+                                    <button 
+                                        key={i} 
+                                        onClick={() => setCurrentImageIndex(i)}
+                                        className={`w-2 h-2 rounded-full transition-all ${i === currentImageIndex ? 'bg-white w-4' : 'bg-white/50'}`}
+                                        aria-label={`Go to slide ${i + 1}`}
+                                    />
+                                ))}
+                            </div>
                         </div>
 
                         {/* Abstract Background Shapes */}

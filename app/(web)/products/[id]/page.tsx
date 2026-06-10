@@ -91,7 +91,7 @@ export default function ProductDetailPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                     {/* Image Section */}
                     <div className="relative">
-                        <ProductGallery images={[product.image, "/images/boutique/home-hero-v2.png", "/images/boutique/home-hero-v2.png"]} />
+                        <ProductGallery images={[product.image, "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?q=80&w=800&auto=format&fit=crop", "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=800&auto=format&fit=crop"]} />
                         {product.badge && (
                             <div className="absolute top-6 left-6 bg-primary text-white text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full shadow-lg z-10">
                                 {product.badge}
