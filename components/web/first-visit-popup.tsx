@@ -37,7 +37,7 @@ export default function FirstVisitPopup() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center px-4 py-6 sm:px-6 overflow-y-auto">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -49,7 +49,7 @@ export default function FirstVisitPopup() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-lg max-h-[90vh] bg-white rounded-3xl shadow-2xl overflow-y-auto z-10"
+            className="relative w-full max-w-[min(95vw,28rem)] sm:max-w-[34rem] md:max-w-[min(90vw,40rem)] lg:max-w-lg max-h-[calc(100vh-3rem)] bg-white rounded-[28px] shadow-2xl overflow-hidden z-10"
           >
             <button
               onClick={handleClose}
@@ -57,28 +57,36 @@ export default function FirstVisitPopup() {
             >
               <X size={20} />
             </button>
-            <div className="flex flex-col md:flex-row h-full">
+            <div className="flex flex-col gap-4 lg:flex-row h-full min-h-0">
               {/* Image Side */}
-              <div className="md:w-2/5 h-48 md:h-auto bg-primary/10 relative">
+              <div className="lg:w-2/5 h-44 lg:h-auto bg-primary/10 relative overflow-hidden min-h-[180px] lg:min-h-0">
                 <div className="absolute inset-0 bg-linear-to-b from-transparent to-primary/20" />
                 {/* You can replace this with an actual image */}
                 <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
-                  <div className="text-primary opacity-80 font-serif italic text-xl md:text-2xl">E-Store Couture</div>
+                  <div className="text-primary opacity-80 font-serif italic text-xl md:text-2xl">
+                    E-Store Couture
+                  </div>
                 </div>
               </div>
-              
+
               {/* Content Side */}
-              <div className="md:w-3/5 p-8 text-center md:text-left">
+              <div className="lg:w-3/5 p-6 md:p-8 text-center lg:text-left flex flex-col overflow-y-auto min-h-0">
                 <h3 className="text-xl md:text-2xl font-serif font-bold text-[#1a1a1a] mb-2">
                   Welcome to E-Store!
                 </h3>
                 <p className="text-xs md:text-sm text-zinc-500 mb-6 leading-relaxed">
-                  Join our premium newsletter and get <strong className="text-primary font-bold">10% OFF</strong> your first purchase of custom or readymade couture.
+                  Join our premium newsletter and get{" "}
+                  <strong className="text-primary font-bold">10% OFF</strong>{" "}
+                  your first purchase of custom or readymade couture.
                 </p>
 
                 <div className="bg-primary/5 border border-primary/20 rounded-xl py-3 px-4 mb-6 inline-block text-center mx-auto md:mx-0 w-full">
-                  <span className="text-[10px] md:text-xs uppercase tracking-widest text-zinc-500 font-bold block mb-1">Use Code</span>
-                  <span className="text-base md:text-lg font-mono font-bold tracking-wider text-primary">WELCOME10</span>
+                  <span className="text-[10px] md:text-xs uppercase tracking-widest text-zinc-500 font-bold block mb-1">
+                    Use Code
+                  </span>
+                  <span className="text-base md:text-lg font-mono font-bold tracking-wider text-primary">
+                    WELCOME10
+                  </span>
                 </div>
 
                 <form onSubmit={handleClaim} className="space-y-3">
