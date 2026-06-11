@@ -9,15 +9,15 @@ export default function SecurityPage() {
   return (
     <div className="space-y-8 max-w-3xl">
       <div>
-        <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Security Settings</h1>
-        <p className="text-zinc-500 mt-2">Manage your password and secure your account.</p>
+        <h1 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">Security Settings</h1>
+        <p className="text-sm md:text-base text-zinc-500 mt-2">Manage your password, two-factor authentication, and active sessions.</p>
       </div>
 
       {/* Password Management */}
       <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-100 shadow-sm space-y-6">
         <div className="flex items-center gap-3 mb-2">
           <Key className="w-5 h-5 text-primary" />
-          <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a]">Change Password</h2>
+          <h2 className="text-lg md:text-xl font-serif font-bold text-[#1a1a1a]">Change Password</h2>
         </div>
         
         {isChangingPassword ? (
@@ -56,7 +56,7 @@ export default function SecurityPage() {
       <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-100 shadow-sm">
         <div className="flex items-center gap-3 mb-4">
           <Shield className="w-5 h-5 text-primary" />
-          <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a]">Two-Factor Authentication</h2>
+          <h2 className="text-lg md:text-xl font-serif font-bold text-[#1a1a1a]">Two-Factor Authentication</h2>
         </div>
         <p className="text-xs md:text-sm text-zinc-600 mb-6">Add an extra layer of security to your account by requiring an OTP sent to your phone when logging in.</p>
         
@@ -73,7 +73,7 @@ export default function SecurityPage() {
 
       {/* Active Sessions */}
       <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-100 shadow-sm">
-        <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a] mb-6">Active Sessions</h2>
+        <h2 className="text-lg md:text-xl font-serif font-bold text-[#1a1a1a] mb-6">Active Sessions</h2>
         <div className="space-y-4">
           <div className="flex items-start justify-between p-4 border border-primary/20 bg-primary/5 rounded-2xl">
             <div className="flex gap-4">

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { buttonVariants } from "../ui/button";
-import { Menu, X, Store, ShoppingBag, User2, LogOut, Settings, History, Search, Heart, MapPin, ChevronDown } from "lucide-react";
+import { Menu, X, Store, ShoppingBag, User2, LogOut, Settings, History, Search, Heart, MapPin, ChevronRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useUser } from "@/context/UserContext";
 import { useWishlist } from "@/context/WishlistContext";
@@ -17,7 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +29,7 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [locationName, setLocationName] = useState("Your address");
   const [isLocating, setIsLocating] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   const fetchLocation = () => {
     if ("geolocation" in navigator) {
@@ -65,6 +66,7 @@ export default function Navbar() {
     if (searchQuery.trim()) {
       router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
       setIsOpen(false);
+      setShowMobileSearch(false);
     }
   };
 
@@ -87,23 +89,44 @@ export default function Navbar() {
     { label: "See more", href: "/shop", highlight: true },
   ];
 
+  const drawerLinks = [
+    { label: "Home", href: "/" },
+    { label: "Shop", href: "/shop" },
+    { label: "Categories", href: "/shop?category=All" },
+    { label: "New Arrivals", href: "/shop?sort=newest" },
+    { label: "Collections", href: "/shop?category=Seasonal Collections" },
+    { label: "Wishlist", href: "/account/wishlist" },
+    { label: "Orders", href: "/account/orders" },
+    { label: "Profile", href: "/account/profile" },
+    { label: "Contact", href: "/contact" },
+  ];
+
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
-    return pathname.startsWith(path);
+    return pathname.startsWith(path) && path !== "/shop"; // simplistic active check
   };
 
   return (
-    <header className="w-full flex flex-col z-50 sticky top-0 bg-white shadow-xs">
+    <header className="w-full flex flex-col z-[60] sticky top-0 bg-white shadow-xs">
       
       {/* --- TIER 1: Top Bar --- */}
-      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-4 flex items-center justify-between gap-4 lg:gap-8">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 py-3 md:py-4 flex items-center justify-between gap-4 lg:gap-8 relative">
         
+        {/* Mobile Hamburger (Left) */}
+        <button
+          onClick={() => setIsOpen(true)}
+          className="p-2 -ml-2 md:hidden text-zinc-800 hover:text-primary transition-colors"
+          aria-label="Toggle menu"
+        >
+          <Menu size={24} strokeWidth={1.5} />
+        </button>
+
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group flex-shrink-0">
-          <div className="bg-primary/10 text-primary p-1.5 rounded-sm">
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-2 group flex-shrink-0">
+          <div className="bg-primary/10 text-primary p-1.5 rounded-sm md:flex hidden">
             <Store className="w-6 h-6" />
           </div>
-          <h1 className="text-xl md:text-2xl font-black tracking-tighter text-primary uppercase">
+          <h1 className="text-lg md:text-2xl font-black tracking-tighter text-primary uppercase">
             E-Store
           </h1>
         </Link>
@@ -122,7 +145,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Search Bar (Expanded) */}
+        {/* Search Bar (Expanded Desktop) */}
         <div className="flex-1 max-w-2xl hidden md:flex">
           <form onSubmit={handleSearch} className="relative w-full flex items-center">
             <input 
@@ -139,8 +162,17 @@ export default function Navbar() {
           </form>
         </div>
 
-        {/* Right Icons */}
-        <div className="flex items-center gap-3 lg:gap-6 flex-shrink-0">
+        {/* Mobile Search Icon (Right) */}
+        <button
+          onClick={() => setShowMobileSearch(!showMobileSearch)}
+          className="p-2 -mr-2 md:hidden text-zinc-800 hover:text-primary transition-colors"
+          aria-label="Toggle search"
+        >
+          <Search size={22} strokeWidth={1.5} />
+        </button>
+
+        {/* Right Icons (Desktop Only) */}
+        <div className="hidden md:flex items-center gap-3 lg:gap-6 flex-shrink-0">
           
           {/* User Profile */}
           {user ? (
@@ -189,10 +221,10 @@ export default function Navbar() {
             </DropdownMenu>
           )}
 
-          {/* Wishlist (Mobile only, or keep if preferred) */}
+          {/* Wishlist */}
           <Link
             href="/account/wishlist"
-            className="md:hidden relative p-2 rounded-lg text-zinc-800 hover:text-primary hover:bg-zinc-50 cursor-pointer transition-all flex items-center gap-2"
+            className="relative p-2 rounded-lg text-zinc-800 hover:text-primary hover:bg-zinc-50 cursor-pointer transition-all flex items-center gap-2"
           >
             <Heart className="w-5 h-5" />
             {wishlistItems.length > 0 && (
@@ -218,15 +250,6 @@ export default function Navbar() {
             </div>
             <span className="hidden lg:inline-block text-xs md:text-sm font-semibold">Cart</span>
           </Link>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 md:hidden"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
       </div>
 
@@ -235,7 +258,7 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
           {/* Left: Explore / Deals / Saved */}
           <div className="flex items-center gap-6">
-            <button className="flex items-center gap-2 font-semibold text-xs md:text-sm hover:text-primary transition-colors pr-6 border-r border-zinc-200">
+            <button onClick={() => setIsOpen(true)} className="flex items-center gap-2 font-semibold text-xs md:text-sm hover:text-primary transition-colors pr-6 border-r border-zinc-200">
               <Menu className="w-4 h-4" />
               Menu
             </button>
@@ -282,113 +305,130 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* --- Mobile Search (Shown below top bar on mobile) --- */}
-      <div className="md:hidden w-full px-4 pb-4">
-        <form onSubmit={handleSearch} className="relative w-full flex items-center">
-            <input 
-              type="text" 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="What you're looking for" 
-              className="w-full bg-primary/5 text-xs md:text-sm px-4 py-2.5 rounded-full border border-transparent focus:outline-none focus:border-primary/20 transition-colors placeholder:text-zinc-500"
+      {/* --- Mobile Search Dropdown --- */}
+      <AnimatePresence>
+        {showMobileSearch && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden w-full px-4 pb-4 overflow-hidden"
+          >
+            <form onSubmit={handleSearch} className="relative w-full flex items-center mt-2">
+                <input 
+                  type="text" 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="What you're looking for" 
+                  className="w-full bg-primary/5 text-sm px-5 py-3 rounded-2xl border border-transparent focus:outline-none focus:border-primary/20 transition-colors placeholder:text-zinc-500"
+                />
+                <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 bg-white text-zinc-800 border border-zinc-200 w-8 h-8 rounded-full flex items-center justify-center shadow-sm">
+                  <Search className="w-4 h-4" />
+                </button>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* --- Mobile Menu Drawer --- */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100]"
             />
-            <button type="submit" className="absolute right-1 top-1/2 -translate-y-1/2 bg-white text-zinc-800 border border-zinc-200 w-8 h-8 rounded-full flex items-center justify-center shadow-sm">
-              <Search className="w-3.5 h-3.5" />
-            </button>
-        </form>
-      </div>
-
-      {/* --- Mobile Menu Overlay --- */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b z-50 h-[calc(100vh-115px)] overflow-y-auto">
-          <div className="flex flex-col gap-1 p-4">
-            
-            {/* User mobile section */}
-            {user ? (
-              <div className="flex items-center gap-3 p-3 bg-zinc-50 rounded-xl mb-4">
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                  <User2 className="w-5 h-5 text-primary" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs md:text-sm font-bold">{user.name || "Account"}</span>
-                  <span className="text-[11px] text-zinc-500">{user.email || user.mobile}</span>
-                </div>
-              </div>
-            ) : null}
-
-            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mt-2 mb-1 px-2">Menu</span>
-            {mainLinks.map((item) => (
-              <Link
-                key={item.href}
-                className={buttonVariants({
-                  variant: isActive(item.href) ? "secondary" : "ghost",
-                  className: "w-full justify-start rounded-xl font-medium",
-                })}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            <hr className="my-4 border-dashed opacity-50" />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1 px-2">Categories</span>
-            
-            <div className="grid grid-cols-2 gap-2">
-                {categoryLinks.map((item) => (
-                <Link
-                    key={item.href}
-                    className={buttonVariants({
-                    variant: "ghost",
-                    className: cn("w-full justify-start rounded-xl text-[10px] md:text-xs", item.highlight && "text-primary"),
-                    })}
-                    href={item.href}
-                    onClick={() => setIsOpen(false)}
-                >
-                    {item.label}
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+              className="fixed top-0 left-0 bottom-0 w-[85%] max-w-sm bg-white z-[101] shadow-2xl flex flex-col"
+            >
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-5 border-b border-zinc-100">
+                <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2 text-primary">
+                  <Store className="w-6 h-6" />
+                  <span className="font-serif font-black text-xl uppercase tracking-wider">E-Store</span>
                 </Link>
-                ))}
-            </div>
-
-            <hr className="my-4 border-dashed opacity-50" />
-
-            {user ? (
-              <div className="flex flex-col gap-2 pb-8">
-                 <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-1 px-2">Account</span>
-                <Link href="/account" className={buttonVariants({ variant: "ghost", className: "justify-start text-xs md:text-sm rounded-xl" })} onClick={() => setIsOpen(false)}>Dashboard</Link>
-                <Link href="/account/orders" className={buttonVariants({ variant: "ghost", className: "justify-start text-xs md:text-sm rounded-xl" })} onClick={() => setIsOpen(false)}>Orders</Link>
-                <Link href="/account/wishlist" className={buttonVariants({ variant: "ghost", className: "justify-start text-xs md:text-sm rounded-xl" })} onClick={() => setIsOpen(false)}>Wishlist</Link>
-                <Link href="/account/profile" className={buttonVariants({ variant: "ghost", className: "justify-start text-xs md:text-sm rounded-xl" })} onClick={() => setIsOpen(false)}>Profile</Link>
-                <button
-                  onClick={() => {
-                    logout();
-                    setIsOpen(false);
-                  }}
-                  className={buttonVariants({
-                    variant: "ghost",
-                    className: "w-full justify-start gap-3 rounded-xl text-red-500 mt-2",
-                  })}
+                <button 
+                  onClick={() => setIsOpen(false)} 
+                  className="p-2 -mr-2 text-zinc-400 hover:text-zinc-800 bg-zinc-50 hover:bg-zinc-100 transition-colors rounded-full"
                 >
-                  <LogOut className="w-4 h-4" /> Log out
+                  <X size={20} />
                 </button>
               </div>
-            ) : (
-              <div className="flex flex-col gap-2 pb-8 mt-2">
-                <Link
-                  className={buttonVariants({
-                    variant: "default",
-                    className: "w-full justify-center rounded-xl py-6",
+
+              {/* Drawer Content */}
+              <div className="flex-1 overflow-y-auto px-5 py-6">
+                
+                {/* Navigation Links */}
+                <div className="flex flex-col gap-1 mb-8">
+                  {drawerLinks.map((item) => {
+                    const active = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href.split("?")[0]));
+                    return (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className={cn(
+                          "flex items-center justify-between py-3.5 px-3 rounded-xl transition-colors font-medium text-sm",
+                          active ? "bg-primary/5 text-primary" : "text-zinc-700 hover:bg-zinc-50"
+                        )}
+                      >
+                        {item.label}
+                        {active && <ChevronRight size={16} className="text-primary" />}
+                      </Link>
+                    )
                   })}
-                  href="/auth/login?role=customer"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Login / Sign Up
-                </Link>
+                </div>
+
+                {/* Account Actions */}
+                <div className="bg-zinc-50 rounded-2xl p-5 border border-zinc-100">
+                  {user ? (
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center border border-zinc-200 shadow-sm">
+                          <User2 className="w-5 h-5 text-zinc-600" />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-sm font-bold text-zinc-900">{user.firstName || user.name || "Account"}</span>
+                          <span className="text-xs text-zinc-500">{user.email || user.mobile}</span>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setIsOpen(false);
+                        }}
+                        className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-white border border-zinc-200 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors shadow-sm"
+                      >
+                        <LogOut className="w-4 h-4" /> Sign Out
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-3">
+                      <p className="text-xs text-zinc-500 text-center font-medium">Join E-Store for a premium experience</p>
+                      <Link
+                        href="/auth/login?role=customer"
+                        onClick={() => setIsOpen(false)}
+                        className="w-full flex items-center justify-center py-3 rounded-xl bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors shadow-md"
+                      >
+                        Sign In / Register
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

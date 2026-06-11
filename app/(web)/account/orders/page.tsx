@@ -34,7 +34,7 @@ export default function OrdersPage() {
     <div className="space-y-8 max-w-4xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Order History</h1>
+          <h1 className="text-sm md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Order History</h1>
           <p className="text-zinc-500 mt-2">Track, manage and view your past orders.</p>
         </div>
         
@@ -137,7 +137,7 @@ export default function OrdersPage() {
             <div className="w-16 h-16 bg-zinc-50 rounded-full flex items-center justify-center mb-4">
               <Package className="w-8 h-8 text-zinc-300" />
             </div>
-            <h3 className="text-base md:text-lg font-bold text-[#1a1a1a] mb-2">No orders found</h3>
+            <h3 className="text-xs md:text-lg font-bold text-[#1a1a1a] mb-2">No orders found</h3>
             <p className="text-zinc-500 mb-6">Looks like you haven&apos;t placed any orders with this status yet.</p>
             <Link href="/shop" className="bg-primary px-6 py-3 rounded-xl text-white font-medium text-xs md:text-sm hover:opacity-90 transition-opacity">
               Start Shopping

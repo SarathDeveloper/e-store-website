@@ -38,10 +38,10 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
   };
 
   return (
-    <div className="flex flex-col bg-white border border-zinc-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow h-full">
+    <div className="flex flex-col bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
         
         {/* Image Container */}
-        <Link href={`/products/${product.id}`} className="block relative aspect-square rounded-xl overflow-hidden mb-4 bg-zinc-100 group cursor-pointer">
+        <Link href={`/products/${product.id}`} className="block relative aspect-[4/5] bg-zinc-100 group cursor-pointer">
             <Image
                 src={product.image}
                 alt={product.title}
@@ -57,13 +57,13 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
             )}
 
             {/* Top Right Actions */}
-            <div className="absolute top-3 right-3 flex flex-col gap-2 z-20">
+            <div className="absolute top-2 right-2 md:top-3 md:right-3 flex flex-col gap-1.5 md:gap-2 z-20">
                 <button
                     onClick={handleWishlist}
-                    className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm text-zinc-400 hover:text-red-500 transition-colors"
+                    className="w-7 h-7 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm text-zinc-400 hover:text-red-500 transition-colors"
                     aria-label="Toggle Wishlist"
                 >
-                    <Heart className={cn("w-4 h-4", isWished && "fill-red-500 text-red-500")} />
+                    <Heart className={cn("w-4 h-4 md:w-4 md:h-4", isWished && "fill-red-500 text-red-500")} />
                 </button>
                 <button
                     onClick={(e) => {
@@ -71,26 +71,26 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
                         e.preventDefault();
                         onQuickView(product);
                     }}
-                    className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm text-zinc-400 hover:text-primary transition-colors opacity-0 group-hover:opacity-100 md:opacity-100"
+                    className="w-7 h-7 md:w-8 md:h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm text-zinc-400 hover:text-primary transition-colors opacity-0 group-hover:opacity-100 md:opacity-100"
                     aria-label="Quick View"
                 >
-                    <Eye className="w-4 h-4" />
+                    <Eye className="w-4 h-4 md:w-4 md:h-4" />
                 </button>
             </div>
         </Link>
 
         {/* Product Info */}
-        <div className="flex flex-col flex-1">
-            <Link href={`/products/${product.id}`} className="block">
-                <h3 className="text-base md:text-lg font-bold text-zinc-900 leading-tight mb-2 hover:text-primary transition-colors line-clamp-2">
+        <div className="flex flex-col flex-1 p-2 md:p-4 pt-3 md:pt-4">
+            <Link href={`/products/${product.id}`} className="block mb-auto">
+                <h3 className="text-sm md:text-lg font-bold text-zinc-900 leading-tight mb-1 md:mb-2 hover:text-primary transition-colors line-clamp-2">
                     {product.title}
                 </h3>
-                <p className="text-[10px] md:text-xs text-zinc-500 mb-3 line-clamp-2 leading-relaxed">
+                <p className="text-[10px] md:text-xs text-zinc-500 mb-2 md:mb-3 line-clamp-1 md:line-clamp-2 leading-relaxed">
                     {product.description || "A majestic crimson silk saree with intricate gold zari borders, perfect for grand occasions."}
                 </p>
 
                 {/* Ratings */}
-                <div className="flex items-center gap-1 mb-4">
+                <div className="flex items-center gap-1 mb-2 md:mb-4">
                     <div className="flex text-[#ffc107]">
                         <Star className="w-3.5 h-3.5 fill-current" />
                         <Star className="w-3.5 h-3.5 fill-current" />
@@ -102,20 +102,20 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
                 </div>
 
                 {/* Price */}
-                <div className="flex items-end gap-2 mb-6">
-                    <span className="text-primary text-lg md:text-xl font-black tracking-tight">{product.price}</span>
+                <div className="flex items-end gap-1.5 md:gap-2 mt-1 md:mt-auto mb-3 md:mb-6">
+                    <span className="text-primary text-base md:text-xl font-black tracking-tight leading-none">{product.price}</span>
                     {product.oldPrice && (
                         <>
-                            <span className="text-[10px] md:text-xs text-zinc-400 line-through font-medium mb-1">{product.oldPrice}</span>
-                            <span className="text-[11px] font-bold text-black mb-1 ml-1 bg-zinc-100 px-1.5 py-0.5 rounded">20% Off</span>
+                            <span className="text-[10px] md:text-xs text-zinc-400 line-through font-medium leading-none">{product.oldPrice}</span>
+                            <span className="text-[9px] md:text-[11px] font-bold text-black ml-auto md:ml-1 bg-zinc-100 px-1.5 py-0.5 rounded leading-none">20% Off</span>
                         </>
                     )}
                 </div>
             </Link>
 
             {/* Actions */}
-            <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-2">
-                <Link href={`/products/${product.id}`} className="text-primary text-[10px] md:text-xs sm:text-sm font-semibold hover:underline">
+            <div className="mt-auto flex flex-wrap items-center justify-between gap-2 md:gap-3 pt-2 border-t border-zinc-50">
+                <Link href={`/products/${product.id}`} className="text-primary text-[10px] md:text-xs font-semibold hover:underline">
                     View Details
                 </Link>
                 <button
@@ -123,7 +123,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
                         e.preventDefault();
                         addToCart(product);
                     }}
-                    className="bg-primary text-primary-foreground px-4 sm:px-5 py-2 rounded-full text-[10px] md:text-xs sm:text-sm font-bold hover:opacity-90 transition-opacity shadow-sm shadow-primary/30"
+                    className="bg-primary text-primary-foreground px-3 md:px-5 py-1.5 md:py-2 rounded-full text-[10px] md:text-xs font-bold hover:opacity-90 transition-opacity shadow-sm shadow-primary/30"
                 >
                     Add to cart
                 </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useCallback } from "react";
 
 import { Product, products } from "@/lib/mock-products";
 
@@ -31,7 +31,7 @@ export { products };
 export function CartProvider({ children }: { children: ReactNode }) {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-    const addToCart = (product: Product, selectedSize?: string, selectedColor?: string, qty: number = 1) => {
+    const addToCart = useCallback((product: Product, selectedSize?: string, selectedColor?: string, qty: number = 1) => {
         setCartItems(prev => {
             const existing = prev.find(item => item.id === product.id && item.selectedSize === selectedSize && item.selectedColor === selectedColor);
             if (existing) {
@@ -43,22 +43,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
             }
             return [...prev, { ...product, quantity: qty, selectedSize, selectedColor }];
         });
-    };
+    }, []);
 
-    const removeFromCart = (productId: number) => {
+    const removeFromCart = useCallback((productId: number) => {
         setCartItems(prev => prev.filter(item => item.id !== productId));
-    };
+    }, []);
 
-    const updateQuantity = (productId: number, quantity: number) => {
+    const updateQuantity = useCallback((productId: number, quantity: number) => {
         if (quantity < 1) return;
         setCartItems(prev =>
             prev.map(item =>
                 item.id === productId ? { ...item, quantity } : item
             )
         );
-    };
+    }, []);
 
-    const clearCart = () => setCartItems([]);
+    const clearCart = useCallback(() => setCartItems([]), []);
 
     const parsePrice = (priceStr: string) => {
         return parseInt(priceStr.replace(/[^0-9]/g, "")) || 0;

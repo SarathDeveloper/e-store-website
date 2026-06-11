@@ -18,7 +18,7 @@ export default function ReviewsPage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">My Reviews</h1>
+        <h1 className="text-sm md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">My Reviews</h1>
         <p className="text-zinc-500 mt-2">Manage your submitted product ratings and reviews.</p>
       </div>
 
@@ -75,7 +75,7 @@ export default function ReviewsPage() {
             <div className="w-16 h-16 bg-yellow-50 rounded-full flex items-center justify-center mb-4">
               <MessageSquare className="w-8 h-8 text-yellow-500" />
             </div>
-            <h3 className="text-base md:text-lg font-bold text-[#1a1a1a] mb-2">No reviews yet</h3>
+            <h3 className="text-xs md:text-lg font-bold text-[#1a1a1a] mb-2">No reviews yet</h3>
             <p className="text-zinc-500 mb-6">Share your experience with products you&apos;ve purchased.</p>
             <Link href="/account/orders" className="flex items-center gap-2 text-primary font-bold hover:opacity-80 transition-opacity">
               Review Past Orders <ArrowRight className="w-4 h-4" />

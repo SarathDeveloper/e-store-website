@@ -47,7 +47,7 @@ export default function NotificationsPage() {
     <div className="space-y-8 max-w-3xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight flex items-center gap-3">
+          <h1 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight flex items-center gap-3">
             Notifications 
             {unreadCount > 0 && (
               <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center justify-center -translate-y-1">
@@ -55,7 +55,7 @@ export default function NotificationsPage() {
               </span>
             )}
           </h1>
-          <p className="text-zinc-500 mt-2">Stay updated on your orders and exclusive offers.</p>
+          <p className="text-sm md:text-base text-zinc-500 mt-2">Stay updated on your orders and exclusive offers.</p>
         </div>
         {unreadCount > 0 && (
           <button 
@@ -85,7 +85,7 @@ export default function NotificationsPage() {
               
               <div className="flex-grow">
                 <div className="flex justify-between items-start gap-4 mb-1">
-                  <h3 className={cn("font-bold text-[#1a1a1a]", !notif.isRead && "text-primary")}>{notif.title}</h3>
+                  <h3 className={cn("text-sm md:text-base font-bold text-[#1a1a1a]", !notif.isRead && "text-primary")}>{notif.title}</h3>
                   <span className="text-[11px] text-zinc-400 shrink-0 mt-1 whitespace-nowrap">
                     {new Date(notif.date).toLocaleDateString()}
                   </span>
@@ -109,7 +109,7 @@ export default function NotificationsPage() {
               <Bell className="w-8 h-8 text-zinc-300" />
             </div>
             <h3 className="text-base md:text-lg font-bold text-[#1a1a1a] mb-2">You&apos;re all caught up!</h3>
-            <p className="text-zinc-500">No new notifications to display.</p>
+            <p className="text-sm md:text-base text-zinc-500">No new notifications to display.</p>
           </div>
         )}
       </div>

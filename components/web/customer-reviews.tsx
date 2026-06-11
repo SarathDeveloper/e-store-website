@@ -177,11 +177,7 @@ export default function CustomerReviews() {
         </div>
       </div>
 
-      <div className="mt-16 flex justify-center">
-        <Button size="lg" className="rounded-full px-8 uppercase font-semibold tracking-wider">
-          Get Started
-        </Button>
-      </div>
+
     </section>
   );
 }

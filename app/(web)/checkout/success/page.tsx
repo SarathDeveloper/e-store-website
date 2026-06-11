@@ -16,7 +16,7 @@ export default function CheckoutSuccessPage() {
         
         // Clear cart on success
         clearCart();
-    }, [clearCart]);
+    }, []);
 
     const steps = [
         { id: "cart", label: "Cart", completed: true },

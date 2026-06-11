@@ -14,12 +14,30 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Footer from "@/components/web/footer";
+import { MobileInput } from "@/components/web/mobile-input";
 
 export default function CheckoutPage() {
     const { subtotal, gst, total, cartItems } = useCart();
+    const router = useRouter();
     const [addressType, setAddressType] = useState<"home" | "office">("home");
     const [paymentMethod, setPaymentMethod] = useState<string>("upi");
+    const [mobile, setMobile] = useState("");
+    const [fullName, setFullName] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [pincode, setPincode] = useState("");
+    const [error, setError] = useState("");
+
+    const handlePay = () => {
+        if (!fullName.trim() || !mobile.trim() || !address.trim() || !city.trim() || !pincode.trim()) {
+            setError("Please fill in all delivery address fields before paying.");
+            return;
+        }
+        setError("");
+        router.push("/checkout/success");
+    };
 
     const formatPrice = (amount: number) => `₹${amount.toLocaleString()}`;
 
@@ -89,13 +107,17 @@ export default function CheckoutPage() {
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <input placeholder="Full Name" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />
-                                <input placeholder="Phone Number" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />
+                                <input value={fullName} onChange={e => setFullName(e.target.value)} placeholder="Full Name" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />
+                                <MobileInput 
+                                    value={mobile} 
+                                    onChange={setMobile} 
+                                    className="w-full pl-[4.5rem] pr-4 h-11 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" 
+                                />
                                 <div className="md:col-span-2">
-                                    <textarea placeholder="Complete Address" rows={3} className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none resize-none" />
+                                    <textarea value={address} onChange={e => setAddress(e.target.value)} placeholder="Complete Address" rows={3} className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none resize-none" />
                                 </div>
-                                <input placeholder="City" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />
-                                <input placeholder="Pincode" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />
+                                <input value={city} onChange={e => setCity(e.target.value)} placeholder="City" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />
+                                <input value={pincode} onChange={e => setPincode(e.target.value)} placeholder="Pincode" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />
                             </div>
                         </section>
 
@@ -165,10 +187,11 @@ export default function CheckoutPage() {
                                 </div>
                             </div>
 
-                            <Link href="/checkout/success" className="w-full bg-primary py-3.5 rounded-xl text-white font-medium text-[13px] tracking-widest uppercase shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                            {error && <p className="text-red-500 text-[11px] font-medium text-center mb-3 bg-red-50 p-2 rounded-lg">{error}</p>}
+                            <button onClick={handlePay} className="w-full bg-primary py-3.5 rounded-xl text-white font-medium text-[13px] tracking-widest uppercase shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
                                 Pay Now
                                 <ChevronRight className="w-4 h-4" />
-                            </Link>
+                            </button>
 
                             <div className="mt-6 flex flex-col items-center gap-3 text-center">
                                 <p className="text-[10px] text-zinc-400 font-medium leading-relaxed">

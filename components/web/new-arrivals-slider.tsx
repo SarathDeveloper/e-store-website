@@ -50,7 +50,7 @@ export default function NewArrivalsSlider() {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
             {newArrivals.map((product) => (
-              <div key={product.id} className="flex-[0_0_80%] sm:flex-[0_0_40%] md:flex-[0_0_33.33%] lg:flex-[0_0_25%] pl-4 min-w-0">
+              <div key={product.id} className="flex-[0_0_50%] sm:flex-[0_0_40%] md:flex-[0_0_33.33%] lg:flex-[0_0_25%] pl-3 md:pl-4 min-w-0">
                 <ProductCard product={product} onQuickView={handleQuickView} />
               </div>
             ))}

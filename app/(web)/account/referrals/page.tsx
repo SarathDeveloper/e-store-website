@@ -17,8 +17,8 @@ export default function ReferralsPage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Refer a Friend</h1>
-        <p className="text-zinc-500 mt-2">Invite your friends and earn rewards when they make their first purchase.</p>
+        <h1 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">Refer a Friend</h1>
+        <p className="text-sm md:text-base text-zinc-500 mt-2">Invite your friends to E-Store and earn rewards together.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -71,7 +71,7 @@ export default function ReferralsPage() {
             </div>
             <div>
               <p className="text-zinc-500 text-xs md:text-sm font-medium">Successful Referrals</p>
-              <p className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight">3</p>
+              <p className="text-xl md:text-3xl font-bold text-zinc-900 tracking-tight">3</p>
             </div>
           </div>
           
@@ -81,7 +81,7 @@ export default function ReferralsPage() {
             </div>
             <div>
               <p className="text-zinc-500 text-xs md:text-sm font-medium">Total Rewards Earned</p>
-              <p className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight">₹1,500</p>
+              <p className="text-xl md:text-3xl font-bold text-zinc-900 tracking-tight">₹1,500</p>
             </div>
           </div>
 

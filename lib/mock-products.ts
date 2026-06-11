@@ -26,8 +26,8 @@ export const products: Product[] = [
   {
     id: 1,
     title: "Royal Crimson Silk Saree",
-    price: "$89.99",
-    oldPrice: "$129.99",
+    price: "₹1361",
+    oldPrice: "₹1787",
     badge: "Exclusive",
     color: "bg-red-500",
     category: "Ethnic Wear",
@@ -47,7 +47,7 @@ export const products: Product[] = [
   {
     id: 2,
     title: "Purple Mysore Silk Saree",
-    price: "$64.99",
+    price: "₹1095",
     badge: null,
     color: "bg-purple-600",
     category: "Ethnic Wear",
@@ -67,8 +67,8 @@ export const products: Product[] = [
   {
     id: 3,
     title: "Emerald Banarasi Saree",
-    price: "$119.99",
-    oldPrice: "$159.99",
+    price: "₹1680",
+    oldPrice: "₹2106",
     badge: "New",
     color: "bg-emerald-600",
     category: "Ethnic Wear",
@@ -88,7 +88,7 @@ export const products: Product[] = [
   {
     id: 4,
     title: "Cotton Handloom Saree",
-    price: "$24.99",
+    price: "₹670",
     badge: "Bestseller",
     color: "bg-blue-300",
     category: "Ethnic Wear",
@@ -108,8 +108,8 @@ export const products: Product[] = [
   {
     id: 5,
     title: "Designer Ruffle Saree",
-    price: "$59.99",
-    oldPrice: "$79.99",
+    price: "₹1042",
+    oldPrice: "₹1255",
     badge: "Trending",
     color: "bg-pink-400",
     category: "Party Wear",
@@ -129,7 +129,7 @@ export const products: Product[] = [
   {
     id: 6,
     title: "Embroidered Kurti Set",
-    price: "$34.99",
+    price: "₹776",
     badge: "Premium",
     color: "bg-yellow-500",
     category: "Ethnic Wear",
@@ -149,8 +149,8 @@ export const products: Product[] = [
   {
     id: 7,
     title: "Anarkali Suit Set",
-    price: "$69.99",
-    oldPrice: "$89.99",
+    price: "₹1148",
+    oldPrice: "₹1361",
     badge: null,
     color: "bg-teal-600",
     category: "Ethnic Wear",
@@ -170,7 +170,7 @@ export const products: Product[] = [
   {
     id: 8,
     title: "Festive Lehenga Choli",
-    price: "$149.99",
+    price: "₹2000",
     badge: "Exclusive",
     color: "bg-orange-500",
     category: "Ethnic Wear",
@@ -192,8 +192,8 @@ export const products: Product[] = [
   {
     id: 9,
     title: "Floral Maxi Dress",
-    price: "$29.99",
-    oldPrice: "$39.99",
+    price: "₹723",
+    oldPrice: "₹829",
     badge: "Summer",
     color: "bg-pink-200",
     category: "Western Wear",
@@ -213,7 +213,7 @@ export const products: Product[] = [
   {
     id: 10,
     title: "Classic White Shirt",
-    price: "$14.99",
+    price: "₹563",
     badge: "Essential",
     color: "bg-white",
     category: "Office Wear",
@@ -233,7 +233,7 @@ export const products: Product[] = [
   {
     id: 11,
     title: "Ribbed Crop Top",
-    price: "$8.99",
+    price: "₹500",
     badge: null,
     color: "bg-black",
     category: "Western Wear",
@@ -253,8 +253,8 @@ export const products: Product[] = [
   {
     id: 12,
     title: "Evening Cocktail Dress",
-    price: "$49.99",
-    oldPrice: "$69.99",
+    price: "₹936",
+    oldPrice: "₹1148",
     badge: "Premium",
     color: "bg-blue-800",
     category: "Party Wear",
@@ -274,7 +274,7 @@ export const products: Product[] = [
   {
     id: 13,
     title: "Denim Jacket",
-    price: "$24.99",
+    price: "₹670",
     badge: null,
     color: "bg-blue-400",
     category: "Western Wear",
@@ -294,7 +294,7 @@ export const products: Product[] = [
   {
     id: 14,
     title: "Chic Jumpsuit",
-    price: "$32.99",
+    price: "₹755",
     badge: "Trending",
     color: "bg-red-600",
     category: "Western Wear",
@@ -316,8 +316,8 @@ export const products: Product[] = [
   {
     id: 15,
     title: "High-Waist Wide Leg Jeans",
-    price: "$21.99",
-    oldPrice: "$29.99",
+    price: "₹638",
+    oldPrice: "₹723",
     badge: "Popular",
     color: "bg-blue-500",
     category: "Bottom Wear",
@@ -337,7 +337,7 @@ export const products: Product[] = [
   {
     id: 16,
     title: "Formal Trousers",
-    price: "$18.99",
+    price: "₹606",
     badge: null,
     color: "bg-gray-800",
     category: "Office Wear",
@@ -357,7 +357,7 @@ export const products: Product[] = [
   {
     id: 17,
     title: "Pleated Midi Skirt",
-    price: "$16.99",
+    price: "₹585",
     badge: "New",
     color: "bg-pink-300",
     category: "Bottom Wear",
@@ -377,7 +377,7 @@ export const products: Product[] = [
   {
     id: 18,
     title: "Printed Palazzo Pants",
-    price: "$12.99",
+    price: "₹542",
     badge: null,
     color: "bg-yellow-200",
     category: "Bottom Wear",
@@ -399,8 +399,8 @@ export const products: Product[] = [
   {
     id: 19,
     title: "Tailored Blazer",
-    price: "$39.99",
-    oldPrice: "$49.99",
+    price: "₹829",
+    oldPrice: "₹936",
     badge: "Premium",
     color: "bg-black",
     category: "Office Wear",
@@ -420,7 +420,7 @@ export const products: Product[] = [
   {
     id: 20,
     title: "Pencil Skirt",
-    price: "$14.99",
+    price: "₹563",
     badge: null,
     color: "bg-gray-600",
     category: "Office Wear",
@@ -440,7 +440,7 @@ export const products: Product[] = [
   {
     id: 21,
     title: "Silk Wrap Top",
-    price: "$22.99",
+    price: "₹648",
     badge: "Trending",
     color: "bg-emerald-500",
     category: "Office Wear",
@@ -462,7 +462,7 @@ export const products: Product[] = [
   {
     id: 22,
     title: "Shimmer Bodycon Dress",
-    price: "$35.99",
+    price: "₹787",
     badge: "Bestseller",
     color: "bg-amber-500",
     category: "Party Wear",
@@ -482,8 +482,8 @@ export const products: Product[] = [
   {
     id: 23,
     title: "Velvet Gown",
-    price: "$79.99",
-    oldPrice: "$99.99",
+    price: "₹1255",
+    oldPrice: "₹1468",
     badge: "Exclusive",
     color: "bg-red-900",
     category: "Party Wear",
@@ -502,30 +502,11 @@ export const products: Product[] = [
   },
 
   // Seasonal Collections
-  {
-    id: 24,
-    title: "Woolen Trench Coat",
-    price: "$64.99",
-    badge: "Winter",
-    color: "bg-orange-200",
-    category: "Seasonal Collections",
-    description: "Classic beige trench coat for chilly winter days.",
-    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop",
-    brand: "Winter Essentials",
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Beige", "Camel"],
-    fabric: "Wool Blend",
-    pattern: "Solid",
-    sleeveType: "Full Sleeves",
-    occasion: "Winter Wear",
-    fitType: "Regular Fit",
-    washCare: "Dry Clean Only",
-    stockQuantity: 28,
-  },
+
   {
     id: 25,
     title: "Linen Summer Tunic",
-    price: "$19.99",
+    price: "₹617",
     badge: "Summer",
     color: "bg-blue-100",
     category: "Seasonal Collections",
@@ -545,8 +526,8 @@ export const products: Product[] = [
   {
     id: 26,
     title: "Chunky Knit Sweater",
-    price: "$21.99",
-    oldPrice: "$29.99",
+    price: "₹638",
+    oldPrice: "₹723",
     badge: "Winter",
     color: "bg-red-300",
     category: "Seasonal Collections",
@@ -566,7 +547,7 @@ export const products: Product[] = [
   {
     id: 27,
     title: "Cotton Kaftan",
-    price: "$14.99",
+    price: "₹563",
     badge: "Summer",
     color: "bg-green-200",
     category: "Seasonal Collections",
@@ -586,7 +567,7 @@ export const products: Product[] = [
   {
     id: 28,
     title: "Festive Silk Kurta Set",
-    price: "$45.99",
+    price: "₹893",
     badge: "Festive",
     color: "bg-pink-600",
     category: "Seasonal Collections",
@@ -606,7 +587,7 @@ export const products: Product[] = [
   {
     id: 29,
     title: "Puffer Jacket",
-    price: "$39.99",
+    price: "₹829",
     badge: "Winter",
     color: "bg-gray-900",
     category: "Seasonal Collections",
@@ -626,7 +607,7 @@ export const products: Product[] = [
   {
     id: 30,
     title: "Georgette Sarees Set",
-    price: "$34.99",
+    price: "₹776",
     badge: "Trending",
     color: "bg-purple-300",
     category: "Ethnic Wear",

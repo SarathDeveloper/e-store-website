@@ -2,12 +2,15 @@
 
 import { useUser } from "@/context/UserContext";
 import { useState } from "react";
-import { User, Mail, Phone, Camera, Save, Bell } from "lucide-react";
+import { User, Mail, Phone, Camera, Save, Bell, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import { MobileInput } from "@/components/web/mobile-input";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProfilePage() {
   const { user, updateUser } = useUser();
   const [isSaving, setIsSaving] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.name || "",
     email: user?.email || "",
@@ -26,15 +29,34 @@ export default function ProfilePage() {
     setTimeout(() => {
       updateUser({ ...formData, preferences });
       setIsSaving(false);
-      // In a real app, you'd show a toast notification here
-      alert("Profile updated successfully!");
+      setShowSuccessAlert(true);
+      setTimeout(() => setShowSuccessAlert(false), 3000);
     }, 800);
   };
 
   return (
     <div className="space-y-8 max-w-3xl">
+      <AnimatePresence>
+        {showSuccessAlert && (
+          <motion.div
+            initial={{ opacity: 0, y: -50, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: -50, x: "-50%" }}
+            className="fixed top-6 left-1/2 z-[100] bg-white border border-primary/20 shadow-2xl shadow-primary/10 rounded-2xl px-6 py-4 flex items-center gap-4 min-w-[300px]"
+          >
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+              <CheckCircle2 className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-[#1a1a1a]">Success</h4>
+              <p className="text-xs text-zinc-500">Profile updated successfully.</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div>
-        <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Profile Details</h1>
+        <h1 className="text-sm md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Profile Details</h1>
         <p className="text-zinc-500 mt-2">Manage your personal information and preferences.</p>
       </div>
 
@@ -46,7 +68,7 @@ export default function ProfilePage() {
               {user.avatar ? (
                 <Image src={user.avatar} alt="Avatar" fill className="object-cover" />
               ) : (
-                <div className="w-full h-full bg-primary/10 flex items-center justify-center text-primary font-bold text-2xl md:text-3xl">
+                <div className="w-full h-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl md:text-3xl">
                   {formData.name.charAt(0) || "U"}
                 </div>
               )}
@@ -68,7 +90,7 @@ export default function ProfilePage() {
 
           {/* Personal Info */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-[#1a1a1a] text-base md:text-lg">Personal Information</h3>
+            <h3 className="font-semibold text-[#1a1a1a] text-xs md:text-lg">Personal Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-[10px] md:text-xs font-bold text-zinc-500 uppercase tracking-wider">Full Name</label>
@@ -98,11 +120,10 @@ export default function ProfilePage() {
                 <label className="text-[10px] md:text-xs font-bold text-zinc-500 uppercase tracking-wider">Phone Number</label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-3 w-4 h-4 text-zinc-400" />
-                  <input 
-                    type="tel" 
+                  <MobileInput 
                     value={formData.mobile}
-                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-zinc-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-xs md:text-sm"
+                    onChange={(val) => setFormData({ ...formData, mobile: val })}
+                    className="w-full pl-[4.5rem] pr-4 py-2.5 rounded-xl border border-zinc-200 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-xs md:text-sm"
                   />
                 </div>
               </div>
@@ -113,7 +134,7 @@ export default function ProfilePage() {
 
           {/* Preferences */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-[#1a1a1a] text-base md:text-lg flex items-center gap-2">
+            <h3 className="font-semibold text-[#1a1a1a] text-xs md:text-lg flex items-center gap-2">
               <Bell className="w-5 h-5 text-zinc-400" /> Notifications & Preferences
             </h3>
             <div className="space-y-3">

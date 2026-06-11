@@ -32,7 +32,7 @@ export default function AddressesPage() {
     <div className="space-y-8 max-w-4xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Saved Addresses</h1>
+          <h1 className="text-sm md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Saved Addresses</h1>
           <p className="text-zinc-500 mt-2">Manage your delivery addresses for quick checkout.</p>
         </div>
         <button className="flex items-center justify-center gap-2 px-6 py-3 bg-primary rounded-xl text-xs md:text-sm font-semibold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all shrink-0">
@@ -61,7 +61,7 @@ export default function AddressesPage() {
               </span>
             </div>
 
-            <h3 className="font-bold text-[#1a1a1a] text-base md:text-lg mb-2">{addr.fullName}</h3>
+            <h3 className="font-bold text-[#1a1a1a] text-xs md:text-lg mb-2">{addr.fullName}</h3>
             <p className="text-zinc-600 text-xs md:text-sm leading-relaxed mb-4">
               {addr.streetAddress}<br />
               {addr.city}, {addr.state} {addr.pincode}
@@ -99,7 +99,7 @@ export default function AddressesPage() {
           <div className="w-16 h-16 bg-zinc-50 rounded-full flex items-center justify-center mb-4">
             <MapPin className="w-8 h-8 text-zinc-300" />
           </div>
-          <h3 className="text-base md:text-lg font-bold text-[#1a1a1a] mb-2">No addresses saved</h3>
+          <h3 className="text-xs md:text-lg font-bold text-[#1a1a1a] mb-2">No addresses saved</h3>
           <p className="text-zinc-500 mb-6">Add a delivery address to make checkout faster.</p>
           <button className="bg-primary px-6 py-3 rounded-xl text-white font-medium text-xs md:text-sm hover:opacity-90 transition-opacity flex items-center gap-2">
             <Plus className="w-4 h-4" /> Add Address

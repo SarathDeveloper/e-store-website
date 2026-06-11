@@ -39,7 +39,7 @@ export default function OrderDetailsPage() {
           <ChevronLeft className="w-5 h-5" />
         </Link>
         <div>
-          <h1 className="text-xl md:text-2xl font-serif font-bold text-[#1a1a1a]">Order {order.id}</h1>
+          <h1 className="text-lg md:text-2xl font-serif font-bold text-[#1a1a1a]">Order {order.id}</h1>
           <p className="text-zinc-500 text-xs md:text-sm mt-1">Placed on {new Date(order.date).toLocaleString()}</p>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default function OrderDetailsPage() {
         <div className="lg:col-span-2 space-y-6">
           {/* Tracking Timeline */}
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-100 shadow-sm">
-            <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a] mb-6 flex items-center gap-2">
+            <h2 className="text-xs md:text-lg font-serif font-bold text-[#1a1a1a] mb-6 flex items-center gap-2">
               <Truck className="w-5 h-5 text-primary" /> Delivery Status
             </h2>
             
@@ -97,7 +97,7 @@ export default function OrderDetailsPage() {
 
           {/* Items List */}
           <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-100 shadow-sm">
-            <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a] mb-6">Items in this Order</h2>
+            <h2 className="text-xs md:text-lg font-serif font-bold text-[#1a1a1a] mb-6">Items in this Order</h2>
             <div className="space-y-6">
               {order.items.map((item) => (
                 <div key={item.id} className="flex gap-4 items-center">
@@ -129,7 +129,7 @@ export default function OrderDetailsPage() {
         {/* Right Column - Summary */}
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-3xl border border-zinc-100 shadow-sm">
-            <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a] mb-4">Order Summary</h2>
+            <h2 className="text-xs md:text-lg font-serif font-bold text-[#1a1a1a] mb-4">Order Summary</h2>
             <div className="space-y-3 text-xs md:text-sm">
               <div className="flex justify-between text-zinc-600">
                 <span>Subtotal</span>
@@ -144,7 +144,7 @@ export default function OrderDetailsPage() {
                 <span>₹0</span>
               </div>
               <div className="h-px bg-zinc-100 my-2" />
-              <div className="flex justify-between font-bold text-[#1a1a1a] text-sm md:text-base">
+              <div className="flex justify-between font-bold text-[#1a1a1a] text-xs md:text-base">
                 <span>Total</span>
                 <span className="text-primary">₹{order.total.toLocaleString()}</span>
               </div>

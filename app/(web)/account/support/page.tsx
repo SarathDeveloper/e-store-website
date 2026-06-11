@@ -22,8 +22,8 @@ export default function SupportPage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Customer Support</h1>
-        <p className="text-zinc-500 mt-2">Need help? We&apos;re here for you 24/7.</p>
+        <h1 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">Customer Support</h1>
+        <p className="text-sm md:text-base text-zinc-500 mt-2">Need help with your order? We&apos;re here for you 24/7.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -59,7 +59,7 @@ export default function SupportPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Contact Form */}
         <div className="bg-white p-6 md:p-8 rounded-3xl border border-zinc-100 shadow-sm">
-          <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a] mb-6 flex items-center gap-2">
+          <h2 className="text-lg md:text-xl font-serif font-bold text-[#1a1a1a] mb-6 flex items-center gap-2">
             <Mail className="w-5 h-5 text-primary" /> Send a Message
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -91,7 +91,7 @@ export default function SupportPage() {
 
         {/* FAQs */}
         <div className="bg-zinc-50 p-6 md:p-8 rounded-3xl border border-zinc-100">
-          <h2 className="text-base md:text-lg font-serif font-bold text-[#1a1a1a] mb-6 flex items-center gap-2">
+          <h2 className="text-lg md:text-xl font-serif font-bold text-[#1a1a1a] mb-6 flex items-center gap-2">
             <HelpCircle className="w-5 h-5 text-primary" /> Frequently Asked Questions
           </h2>
           <div className="space-y-4">

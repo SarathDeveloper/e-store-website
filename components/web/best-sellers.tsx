@@ -35,7 +35,7 @@ export default function BestSellers() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
         {bestSellers.map((product) => (
           <div key={product.id}>
             <ProductCard product={{...product, badge: "Best Seller"}} onQuickView={handleQuickView} />

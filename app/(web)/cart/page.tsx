@@ -46,8 +46,8 @@ export default function CartPage() {
                     <div className="lg:col-span-2 space-y-6">
                         {cartItems.map((item) => (
                             <div key={item.id} className="flex gap-6 p-6 bg-white rounded-[32px] border border-zinc-100 shadow-sm hover:shadow-md transition-all">
-                                <div className={cn("w-24 h-24 md:w-32 md:h-32 rounded-2xl flex items-center justify-center shrink-0", item.color)}>
-                                    <ShoppingBag className="w-8 h-8 text-black/5" />
+                                <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden shrink-0 bg-zinc-50 border border-zinc-100">
+                                    <Image src={item.image} alt={item.title} fill className="object-cover" />
                                 </div>
                                 <div className="flex flex-col grow py-1">
                                     <div className="flex justify-between items-start mb-2">
@@ -85,30 +85,7 @@ export default function CartPage() {
                             </div>
                             ))}
                     
-                    {/* Recommended Products */}
-                    <div className="mt-12 pt-8 border-t border-zinc-100">
-                        <h3 className="text-base md:text-lg font-serif font-semibold text-[#1a1a1a] mb-6">Complete Your Look</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            {products.slice(6, 9).map((product) => (
-                                <Link
-                                    key={product.id}
-                                    href={`/products/${product.id}`}
-                                    className="group block bg-white rounded-2xl border border-zinc-100 p-3 hover:shadow-md transition-all"
-                                >
-                                    <div className="relative aspect-square rounded-xl overflow-hidden mb-3 bg-zinc-50">
-                                        <Image
-                                            src={product.image}
-                                            alt={product.title}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition-transform"
-                                        />
-                                    </div>
-                                    <h4 className="text-[13px] font-medium text-[#1a1a1a] truncate">{product.title}</h4>
-                                    <p className="text-primary font-semibold text-xs md:text-sm">{product.price}</p>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+
                     </div>
 
                     {/* Order Summary */}

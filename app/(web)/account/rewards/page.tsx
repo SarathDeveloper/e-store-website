@@ -20,8 +20,8 @@ export default function RewardsPage() {
   return (
     <div className="space-y-8 max-w-4xl">
       <div>
-        <h1 className="text-lg md:text-xl sm:text-2xl font-bold text-zinc-900 tracking-tight">Loyalty & Rewards</h1>
-        <p className="text-zinc-500 mt-2">Earn points on every purchase and redeem them for exclusive discounts.</p>
+        <h1 className="text-xl md:text-2xl font-bold text-zinc-900 tracking-tight">Loyalty & Rewards</h1>
+        <p className="text-sm md:text-base text-zinc-500 mt-2">Earn points on every purchase and redeem them for exclusive discounts.</p>
       </div>
 
       {/* Rewards Overview Card */}
@@ -33,8 +33,8 @@ export default function RewardsPage() {
           <div>
             <p className="text-white/70 font-medium uppercase tracking-wider text-[10px] md:text-xs mb-2">Available Points</p>
             <div className="flex items-end gap-3">
-              <span className="text-4xl md:text-5xl md:text-6xl font-bold text-primary tracking-tight">{totalPoints}</span>
-              <span className="text-base md:text-lg text-white/80 pb-1">pts</span>
+              <span className="text-3xl md:text-5xl font-bold text-primary tracking-tight">{totalPoints}</span>
+              <span className="text-sm md:text-lg text-white/80 pb-1">pts</span>
             </div>
             <p className="text-white/60 text-xs md:text-sm mt-3 flex items-center gap-2">
               <Award className="w-4 h-4 text-primary" /> Equals to ₹{totalPoints} in store value
@@ -42,10 +42,10 @@ export default function RewardsPage() {
           </div>
 
           <div className="flex flex-col gap-3">
-            <button className="bg-primary text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+            <button className="bg-primary text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all text-sm md:text-base">
               Redeem Points
             </button>
-            <button className="bg-white/10 text-white hover:bg-white/20 px-6 py-3 rounded-xl font-semibold transition-all backdrop-blur-sm">
+            <button className="bg-white/10 text-white hover:bg-white/20 px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold transition-all backdrop-blur-sm text-sm md:text-base">
               Ways to Earn
             </button>
           </div>
@@ -62,22 +62,22 @@ export default function RewardsPage() {
             <div className="bg-white border border-zinc-200 rounded-2xl p-5 flex items-center gap-4 relative overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-primary" />
               <div className="flex-grow">
-                <h3 className="font-bold text-[#1a1a1a]">₹500 Off Coupon</h3>
+                <h3 className="text-sm md:text-base font-bold text-[#1a1a1a]">₹500 Off Coupon</h3>
                 <p className="text-xs md:text-sm text-zinc-500 mt-1">Applicable on orders above ₹2000</p>
               </div>
               <div className="text-center shrink-0">
-                <span className="block font-bold text-primary text-base md:text-lg">500 pts</span>
+                <span className="block font-bold text-primary text-sm md:text-lg">500 pts</span>
                 <button className="text-[10px] md:text-xs font-bold text-zinc-400 hover:text-[#1a1a1a] transition-colors mt-1 uppercase tracking-wider">Redeem</button>
               </div>
             </div>
             <div className="bg-white border border-zinc-200 rounded-2xl p-5 flex items-center gap-4 relative overflow-hidden">
               <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-primary" />
               <div className="flex-grow">
-                <h3 className="font-bold text-[#1a1a1a]">Free Shipping</h3>
+                <h3 className="text-sm md:text-base font-bold text-[#1a1a1a]">Free Shipping</h3>
                 <p className="text-xs md:text-sm text-zinc-500 mt-1">Valid for one domestic order</p>
               </div>
               <div className="text-center shrink-0">
-                <span className="block font-bold text-primary text-base md:text-lg">250 pts</span>
+                <span className="block font-bold text-primary text-sm md:text-lg">250 pts</span>
                 <button className="text-[10px] md:text-xs font-bold text-zinc-400 hover:text-[#1a1a1a] transition-colors mt-1 uppercase tracking-wider">Redeem</button>
               </div>
             </div>

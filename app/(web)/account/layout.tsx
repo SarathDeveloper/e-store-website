@@ -7,6 +7,7 @@ import AccountSidebar from "@/components/web/account-sidebar";
 import Footer from "@/components/web/footer";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 export default function AccountLayout({ children }: { children: React.ReactNode }) {
   const { user, isLoading } = useUser();
@@ -31,15 +32,15 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
     <div className="min-h-screen flex flex-col bg-[#fcfcfc] font-sans">
       <main className="flex-grow w-full max-w-7xl mx-auto px-4 py-8 md:py-12">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Sidebar - Hidden on mobile, handled differently or just stack it */}
-          <aside className="w-full md:w-80 shrink-0 hidden md:block">
+          {/* Sidebar - Shows as the main menu on mobile when at /account, otherwise hidden on sub-pages */}
+          <aside className={cn("w-full md:w-80 shrink-0", pathname !== "/account" && "hidden md:block")}>
             <div className="sticky top-24">
               <AccountSidebar />
             </div>
           </aside>
 
-          {/* Main Content Area */}
-          <section className="flex-grow min-w-0">
+          {/* Main Content Area - Hidden on mobile when at /account so the menu takes full focus */}
+          <section className={cn("flex-grow min-w-0", pathname === "/account" && "hidden md:block")}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={pathname}

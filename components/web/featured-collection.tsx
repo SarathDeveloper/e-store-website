@@ -38,18 +38,18 @@ export default function FeaturedCollection() {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
                 
                 {/* Single Product Cards */}
-                {mainProducts.map((product) => (
-                    <div key={product.id}>
+                {mainProducts.map((product, idx) => (
+                    <div key={product.id} className={cn(idx === 2 ? "hidden lg:block" : "")}>
                         <ProductCard product={product} onQuickView={handleQuickView} />
                     </div>
                 ))}
 
                 {/* Collection Card */}
-                <div className="bg-white border border-zinc-100 rounded-2xl p-5 shadow-sm flex flex-col h-full">
-                    <h3 className="text-base md:text-lg font-bold text-zinc-900 mb-4 tracking-tight">Trend collection for you</h3>
+                <div className="col-span-2 sm:col-span-2 lg:col-span-1 bg-white border border-zinc-100 rounded-2xl p-4 md:p-5 shadow-sm flex flex-col h-full">
+                    <h3 className="text-sm md:text-lg font-bold text-zinc-900 mb-4 tracking-tight">Trend collection for you</h3>
                     
                     <div className="grid grid-cols-2 gap-3 flex-1">
                         {collectionProducts.map((product, idx) => (
