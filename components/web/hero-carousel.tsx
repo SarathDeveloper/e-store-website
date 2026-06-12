@@ -11,15 +11,6 @@ import { cn } from "@/lib/utils";
 
 const slides = [
   {
-    id: 1,
-    headline: "Discover Timeless Women's Fashion",
-    description: "Explore elegant styles crafted for every occasion.",
-    cta: "Shop Collection",
-    link: "/shop",
-    image: "https://images.unsplash.com/photo-1589465885857-44edb59bbff2?q=80&w=1200&auto=format&fit=crop", // fallback placeholder
-    bgColor: "bg-[#fbf9f6]",
-  },
-  {
     id: 2,
     headline: "Festive Collection Is Here",
     description: "Celebrate every moment in style.",
@@ -77,35 +68,35 @@ export default function HeroCarousel() {
               <div className="absolute inset-0 bg-linear-to-r from-black/40 to-transparent md:bg-none z-10" />
               <div className="container mx-auto px-6 lg:px-12 h-full flex items-center relative z-20">
                 <div className="w-full md:w-1/2 space-y-6">
-                    <h2 className="text-2xl md:text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white md:text-[#1a1a1a] leading-tight">
+                  <h2 className="text-2xl md:text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-white md:text-[#1a1a1a] leading-tight">
                     {slide.headline}
                   </h2>
-                    <p className="text-xs md:text-sm md:text-base text-zinc-200 md:text-zinc-600 max-w-md">
+                  <p className="text-xs md:text-sm md:text-base text-zinc-200 md:text-zinc-600 max-w-md">
                     {slide.description}
                   </p>
                   <div>
-                      <Link 
-                        href={slide.link}
-                        className="inline-block bg-primary text-white px-6 py-3 rounded-full font-medium text-xs md:text-sm transition-transform hover:-translate-y-1 shadow-lg shadow-primary/30"
-                      >
+                    <Link
+                      href={slide.link}
+                      className="inline-block bg-primary text-white px-6 py-3 rounded-full font-medium text-xs md:text-sm transition-transform hover:-translate-y-1 shadow-lg shadow-primary/30"
+                    >
                       {slide.cta}
                     </Link>
                   </div>
                 </div>
               </div>
-              
+
               {/* Background Image Setup */}
               <div className="absolute right-0 top-0 w-full md:w-3/5 h-full -z-10 md:z-0 opacity-40 md:opacity-100">
-                  <div className="relative w-full h-full md:clip-path-slant bg-zinc-200">
-                    <Image
-                        src={slide.image}
-                        alt={slide.headline}
-                        fill
-                        className="object-cover object-center"
-                        priority={index === 0}
-                    />
-                    <div className="absolute inset-0 md:bg-linear-to-l md:from-transparent md:to-white/80" />
-                  </div>
+                <div className="relative w-full h-full md:clip-path-slant bg-zinc-200">
+                  <Image
+                    src={slide.image}
+                    alt={slide.headline}
+                    fill
+                    className="object-cover object-center"
+                    priority={index === 0}
+                  />
+                  <div className="absolute inset-0 md:bg-linear-to-l md:from-transparent md:to-white/80" />
+                </div>
               </div>
             </div>
           ))}
@@ -113,13 +104,13 @@ export default function HeroCarousel() {
       </div>
 
       {/* Navigation Arrows */}
-      <button 
+      <button
         onClick={scrollPrev}
         className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 backdrop-blur-sm text-zinc-800 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm hover:bg-white z-30"
       >
         <ChevronLeft />
       </button>
-      <button 
+      <button
         onClick={scrollNext}
         className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/80 backdrop-blur-sm text-zinc-800 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm hover:bg-white z-30"
       >
