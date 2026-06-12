@@ -49,7 +49,7 @@ export default function FirstVisitPopup() {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-[min(95vw,28rem)] sm:max-w-[34rem] md:max-w-[min(90vw,40rem)] lg:max-w-lg max-h-[calc(100vh-3rem)] bg-white rounded-[28px] shadow-2xl overflow-hidden z-10"
+            className="relative w-full max-w-[85vw] sm:max-w-[34rem] md:max-w-[min(90vw,40rem)] lg:max-w-lg max-h-[calc(100vh-3rem)] bg-white rounded-2xl md:rounded-[28px] shadow-2xl overflow-hidden z-10"
           >
             <button
               onClick={handleClose}
@@ -59,7 +59,7 @@ export default function FirstVisitPopup() {
             </button>
             <div className="flex flex-col gap-4 lg:flex-row h-full min-h-0">
               {/* Image Side */}
-              <div className="lg:w-2/5 h-44 lg:h-auto bg-primary/10 relative overflow-hidden min-h-[180px] lg:min-h-0">
+              <div className="lg:w-2/5 h-28 sm:h-44 lg:h-auto bg-primary/10 relative overflow-hidden min-h-[120px] sm:min-h-[180px] lg:min-h-0">
                 <div className="absolute inset-0 bg-linear-to-b from-transparent to-primary/20" />
                 {/* You can replace this with an actual image */}
                 <div className="absolute inset-0 flex items-center justify-center p-6 text-center">
@@ -70,17 +70,17 @@ export default function FirstVisitPopup() {
               </div>
 
               {/* Content Side */}
-              <div className="lg:w-3/5 p-6 md:p-8 text-center lg:text-left flex flex-col overflow-y-auto min-h-0">
-                <h3 className="text-xl md:text-2xl font-serif font-bold text-[#1a1a1a] mb-2">
+              <div className="lg:w-3/5 p-5 md:p-8 text-center lg:text-left flex flex-col overflow-y-auto min-h-0">
+                <h3 className="text-lg md:text-2xl font-serif font-bold text-[#1a1a1a] mb-2">
                   Welcome to E-Store!
                 </h3>
-                <p className="text-xs md:text-sm text-zinc-500 mb-6 leading-relaxed">
+                <p className="text-[11px] md:text-sm text-zinc-500 mb-4 md:mb-6 leading-relaxed">
                   Join our premium newsletter and get{" "}
                   <strong className="text-primary font-bold">10% OFF</strong>{" "}
                   your first purchase of custom or readymade couture.
                 </p>
 
-                <div className="bg-primary/5 border border-primary/20 rounded-xl py-3 px-4 mb-6 inline-block text-center mx-auto md:mx-0 w-full">
+                <div className="bg-primary/5 border border-primary/20 rounded-xl py-2 px-4 mb-4 md:mb-6 inline-block text-center mx-auto md:mx-0 w-full">
                   <span className="text-[10px] md:text-xs uppercase tracking-widest text-zinc-500 font-bold block mb-1">
                     Use Code
                   </span>
@@ -96,11 +96,11 @@ export default function FirstVisitPopup() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-xs md:text-sm"
+                    className="w-full px-3 py-2.5 md:px-4 md:py-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-[11px] md:text-sm"
                   />
                   <button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 rounded-xl transition-all shadow-sm active:scale-[0.98]"
+                    className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2.5 md:py-3 rounded-xl transition-all shadow-sm active:scale-[0.98] text-xs md:text-sm"
                   >
                     Claim Offer
                   </button>
