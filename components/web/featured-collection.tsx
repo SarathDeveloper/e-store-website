@@ -10,6 +10,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import ProductCard from "@/components/web/product-card";
 import QuickView from "@/components/web/quick-view";
+import useEmblaCarousel from "embla-carousel-react";
 
 const mainProducts = products.slice(0, 3);
 // Ensure we have 4 products for the collection grid. If not enough products, loop back.
@@ -20,6 +21,13 @@ export default function FeaturedCollection() {
     const { addToCart } = useCart();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+    
+    const [emblaRef] = useEmblaCarousel({
+        align: "start",
+        breakpoints: {
+            '(min-width: 768px)': { active: false }
+        }
+    });
 
     const handleQuickView = (product: Product) => {
         setSelectedProduct(product);
@@ -38,60 +46,64 @@ export default function FeaturedCollection() {
                 </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
-                
-                {/* Single Product Cards */}
-                {mainProducts.map((product, idx) => (
-                    <div key={product.id} className={cn(idx === 2 ? "hidden lg:block" : "")}>
-                        <ProductCard product={product} onQuickView={handleQuickView} />
-                    </div>
-                ))}
-
-                {/* Collection Card */}
-                <div className="col-span-2 sm:col-span-2 lg:col-span-1 bg-white border border-zinc-100 rounded-2xl p-4 md:p-5 shadow-sm flex flex-col h-full">
-                    <h3 className="text-sm md:text-lg font-bold text-zinc-900 mb-4 tracking-tight">Trend collection for you</h3>
+            <div className="md:overflow-visible overflow-hidden" ref={emblaRef}>
+                <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-3 lg:gap-6 -ml-4 md:ml-0">
                     
-                    <div className="grid grid-cols-2 gap-3 flex-1">
-                        {collectionProducts.map((product, idx) => (
-                            <Link href={`/products/${product.id}`} key={`collection-${product.id}-${idx}`} className="relative bg-[#f8f9f8] rounded-xl overflow-hidden group border border-zinc-50 hover:border-zinc-200 transition-colors flex flex-col aspect-[4/5]">
-                                
-                                {/* Overlay Top Stats */}
-                                <div className="absolute top-0 left-0 right-0 w-full p-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 z-10">
-                                    <span className="text-[9px] font-medium text-zinc-500 bg-white/80 px-1.5 rounded backdrop-blur-sm whitespace-nowrap">20% off</span>
-                                    <span className="text-[10px] font-bold text-primary bg-white/80 px-1.5 rounded backdrop-blur-sm whitespace-nowrap">{product.price}</span>
-                                </div>
+                    {/* Single Product Cards */}
+                    {mainProducts.map((product, idx) => (
+                        <div key={product.id} className={cn("flex-[0_0_50%] sm:flex-[0_0_45%] md:flex-auto pl-4 md:pl-0 min-w-0", idx === 2 ? "hidden lg:block" : "")}>
+                            <ProductCard product={product} onQuickView={handleQuickView} />
+                        </div>
+                    ))}
 
-                                {/* Image */}
-                                <div className="absolute inset-0 z-0 p-4 pt-8">
-                                    <div className="relative w-full h-full rounded-lg overflow-hidden mix-blend-multiply">
-                                        <Image
-                                            src={product.image}
-                                            alt={product.title}
-                                            fill
-                                            className="object-contain transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                    </div>
-                                </div>
+                    {/* Collection Card */}
+                    <div className="flex-[0_0_80%] sm:flex-[0_0_60%] md:flex-auto md:col-span-2 lg:col-span-1 pl-4 md:pl-0 min-w-0">
+                        <div className="bg-white border border-zinc-100 rounded-2xl p-4 md:p-5 shadow-sm flex flex-col h-full">
+                            <h3 className="text-sm md:text-lg font-bold text-zinc-900 mb-4 tracking-tight">Trend collection for you</h3>
+                            
+                            <div className="grid grid-cols-2 gap-3 flex-1">
+                                {collectionProducts.map((product, idx) => (
+                                    <Link href={`/products/${product.id}`} key={`collection-${product.id}-${idx}`} className="relative bg-[#f8f9f8] rounded-xl overflow-hidden group border border-zinc-50 hover:border-zinc-200 transition-colors flex flex-col aspect-[4/5]">
+                                        
+                                        {/* Overlay Top Stats */}
+                                        <div className="absolute top-0 left-0 right-0 w-full p-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 z-10">
+                                            <span className="text-[9px] font-medium text-zinc-500 bg-white/80 px-1.5 rounded backdrop-blur-sm whitespace-nowrap">20% off</span>
+                                            <span className="text-[10px] font-bold text-primary bg-white/80 px-1.5 rounded backdrop-blur-sm whitespace-nowrap">{product.price}</span>
+                                        </div>
 
-                                {/* Buy Now Pill Overlay */}
-                                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-max z-10">
-                                    <button 
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            e.stopPropagation();
-                                            addToCart(product);
-                                            router.push("/checkout");
-                                        }}
-                                        className="bg-primary/10 text-primary border border-primary/20 text-[9px] sm:text-[10px] font-bold px-2 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-xs hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap"
-                                    >
-                                        Buy Now
-                                    </button>
-                                </div>
-                            </Link>
-                        ))}
+                                        {/* Image */}
+                                        <div className="absolute inset-0 z-0 p-4 pt-8">
+                                            <div className="relative w-full h-full rounded-lg overflow-hidden mix-blend-multiply">
+                                                <Image
+                                                    src={product.image}
+                                                    alt={product.title}
+                                                    fill
+                                                    className="object-contain transition-transform duration-500 group-hover:scale-105"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Buy Now Pill Overlay */}
+                                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 w-max z-10">
+                                            <button 
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    e.stopPropagation();
+                                                    addToCart(product);
+                                                    router.push("/checkout");
+                                                }}
+                                                className="bg-primary/10 text-primary border border-primary/20 text-[9px] sm:text-[10px] font-bold px-2 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-xs hover:bg-primary hover:text-primary-foreground transition-colors whitespace-nowrap"
+                                            >
+                                                Buy Now
+                                            </button>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
             <QuickView
                 product={selectedProduct}

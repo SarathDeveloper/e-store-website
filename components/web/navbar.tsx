@@ -122,11 +122,12 @@ export default function Navbar() {
         </button>
 
         {/* Logo */}
-        <Link href="/" className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-2 group flex-shrink-0">
-          <div className="bg-primary/10 text-primary p-1.5 rounded-sm md:flex hidden">
+        <Link href="/" className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center gap-2 text-primary group flex-shrink-0">
+          <Store className="w-6 h-6 md:hidden" />
+          <div className="bg-primary/10 p-1.5 rounded-sm hidden md:flex">
             <Store className="w-6 h-6" />
           </div>
-          <h1 className="text-lg md:text-2xl font-black tracking-tighter text-primary uppercase">
+          <h1 className="font-serif font-black text-xl uppercase tracking-wider md:font-sans md:text-2xl md:tracking-tighter">
             E-Store
           </h1>
         </Link>
