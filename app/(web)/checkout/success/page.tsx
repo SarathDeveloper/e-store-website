@@ -1,22 +1,33 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { CheckCircle2, ChevronRight, Download, Package } from "lucide-react";
+import React, { useEffect, useState, Suspense } from "react";
+import { CheckCircle2, ChevronRight, Download, Package, Eye } from "lucide-react";
 import Link from "next/link";
 import Footer from "@/components/web/footer";
 import { useCart } from "@/context/CartContext";
+import { mockApi, downloadInvoice } from "@/lib/mock-account-api";
+import { useSearchParams } from "next/navigation";
 
-export default function CheckoutSuccessPage() {
+function SuccessContent() {
     const { clearCart } = useCart();
-    const [orderId, setOrderId] = useState("");
+    const searchParams = useSearchParams();
+    const [orderId, setOrderId] = useState(searchParams?.get("orderId") || "");
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        setOrderId(`ORD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
+        if (!orderId) {
+            setOrderId(`ORD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`);
+        }
         
         // Clear cart on success
         clearCart();
-    }, []);
+    }, [clearCart, orderId]);
+
+    const handleDownload = () => {
+        const order = mockApi.getOrders().find(o => o.id === orderId);
+        if (order) {
+            downloadInvoice(order);
+        }
+    };
 
     const steps = [
         { id: "cart", label: "Cart", completed: true },
@@ -73,13 +84,14 @@ export default function CheckoutSuccessPage() {
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Link
-                                href="/shop"
+                                href={`/account/orders/${orderId}`}
                                 className="w-full sm:w-auto bg-primary px-8 py-3.5 rounded-xl text-white font-medium tracking-wide shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center justify-center gap-2"
                             >
-                                Continue Shopping
-                                <ChevronRight className="w-4 h-4" />
+                                <Eye className="w-4 h-4" />
+                                View Order
                             </Link>
                             <button
+                                onClick={handleDownload}
                                 className="w-full sm:w-auto bg-white px-8 py-3.5 rounded-xl text-[#1a1a1a] border border-zinc-200 font-medium tracking-wide hover:bg-zinc-50 transition-all flex items-center justify-center gap-2"
                             >
                                 <Download className="w-4 h-4" />
@@ -96,5 +108,13 @@ export default function CheckoutSuccessPage() {
             </main>
             <Footer />
         </div>
+    );
+}
+
+export default function CheckoutSuccessPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-zinc-500">Loading details...</div>}>
+            <SuccessContent />
+        </Suspense>
     );
 }

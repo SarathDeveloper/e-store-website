@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Order, mockApi } from "@/lib/mock-account-api";
+import { Order, mockApi, downloadInvoice } from "@/lib/mock-account-api";
 import { Package, ChevronRight, Download } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -121,7 +121,10 @@ export default function OrdersPage() {
 
                   {/* Actions */}
                   <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                    <button className="flex items-center justify-center gap-2 px-6 py-2.5 bg-white border border-zinc-200 rounded-xl text-xs md:text-sm font-semibold text-[#1a1a1a] hover:bg-zinc-50 transition-colors w-full sm:w-auto">
+                    <button 
+                      onClick={() => downloadInvoice(order)}
+                      className="flex items-center justify-center gap-2 px-6 py-2.5 bg-white border border-zinc-200 rounded-xl text-xs md:text-sm font-semibold text-[#1a1a1a] hover:bg-zinc-50 transition-colors w-full sm:w-auto"
+                    >
                       <Download className="w-4 h-4" /> Invoice
                     </button>
                     <button className="flex items-center justify-center gap-2 px-6 py-2.5 bg-primary rounded-xl text-xs md:text-sm font-semibold text-white shadow-lg shadow-primary/20 hover:bg-primary/90 transition-colors w-full sm:w-auto">

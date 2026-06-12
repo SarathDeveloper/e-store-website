@@ -201,3 +201,120 @@ export const mockApi = {
     getReviews: () => getStorage<Review[]>("reviews", defaultReviews),
     saveReviews: (reviews: Review[]) => setStorage("reviews", reviews),
 };
+
+export const downloadInvoice = (order: Order) => {
+    if (typeof window === "undefined") return;
+    
+    const invoiceHtml = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invoice - ${order.id}</title>
+        <style>
+            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px; color: #333; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+            .brand { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
+            .invoice-details { text-align: right; }
+            .address-section { display: flex; justify-content: space-between; margin-bottom: 40px; }
+            .address-box { width: 45%; }
+            .address-box h3 { color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+            table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+            th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+            th { text-transform: uppercase; font-size: 12px; color: #888; }
+            .totals { width: 50%; float: right; }
+            .total-row { display: flex; justify-content: space-between; padding: 8px 0; }
+            .total-row.grand-total { font-size: 18px; font-weight: bold; border-top: 2px solid #333; padding-top: 12px; margin-top: 12px; }
+            .footer { clear: both; margin-top: 60px; text-align: center; color: #888; font-size: 12px; border-top: 1px solid #eee; padding-top: 20px; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="brand">E-STORE</div>
+            <div class="invoice-details">
+                <h2>INVOICE</h2>
+                <p><strong>Order ID:</strong> ${order.id}</p>
+                <p><strong>Date:</strong> ${new Date(order.date).toLocaleDateString()}</p>
+            </div>
+        </div>
+        
+        <div class="address-section">
+            <div class="address-box">
+                <h3>Billed To</h3>
+                <p><strong>${order.shippingAddress.fullName}</strong><br>
+                ${order.shippingAddress.streetAddress}<br>
+                ${order.shippingAddress.city}, ${order.shippingAddress.pincode}<br>
+                Phone: ${order.shippingAddress.phone}</p>
+            </div>
+            <div class="address-box">
+                <h3>Shipped To</h3>
+                <p><strong>${order.shippingAddress.fullName}</strong><br>
+                ${order.shippingAddress.streetAddress}<br>
+                ${order.shippingAddress.city}, ${order.shippingAddress.pincode}<br>
+                Phone: ${order.shippingAddress.phone}</p>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Description</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th style="text-align: right;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${order.items.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>₹${item.price.toLocaleString()}</td>
+                    <td style="text-align: right;">₹${(item.price * item.quantity).toLocaleString()}</td>
+                </tr>
+                `).join('')}
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <div class="total-row">
+                <span>Subtotal</span>
+                <span>₹${order.total.toLocaleString()}</span>
+            </div>
+            <div class="total-row">
+                <span>Shipping</span>
+                <span>Free</span>
+            </div>
+            <div class="total-row grand-total">
+                <span>Total</span>
+                <span>₹${order.total.toLocaleString()}</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Thank you for shopping with E-Store!</p>
+            <p>If you have any questions concerning this invoice, contact our support team.</p>
+        </div>
+        
+        <script>
+            window.onload = function() { window.print(); }
+        </script>
+    </body>
+    </html>
+    `;
+
+    const blob = new Blob([invoiceHtml], { type: "text/html" });
+    const url = URL.createObjectURL(blob);
+    const newWindow = window.open(url, '_blank');
+    
+    // Fallback if popup is blocked
+    if (!newWindow) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `Invoice_${order.id}.html`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+};

@@ -2,6 +2,8 @@
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useUser } from "@/context/UserContext";
+import { mockApi, Order } from "@/lib/mock-account-api";
 import {
     ChevronRight,
     Home,
@@ -20,6 +22,7 @@ import { MobileInput } from "@/components/web/mobile-input";
 
 export default function CheckoutPage() {
     const { subtotal, gst, total, cartItems } = useCart();
+    const { user } = useUser();
     const router = useRouter();
     const [addressType, setAddressType] = useState<"home" | "office">("home");
     const [paymentMethod, setPaymentMethod] = useState<string>("upi");
@@ -29,6 +32,18 @@ export default function CheckoutPage() {
     const [city, setCity] = useState("");
     const [pincode, setPincode] = useState("");
     const [error, setError] = useState("");
+    const [useSavedAddress, setUseSavedAddress] = useState(false);
+
+    const handleUseSavedAddressToggle = () => {
+        if (!useSavedAddress && user && user.address) {
+            setFullName(user.name || `${user.firstName} ${user.lastName}`.trim());
+            setMobile(user.mobile || "");
+            setAddress(user.address.street || "");
+            setCity(user.address.city || "");
+            setPincode(user.address.pincode || "");
+        }
+        setUseSavedAddress(!useSavedAddress);
+    };
 
     const handlePay = () => {
         if (!fullName.trim() || !mobile.trim() || !address.trim() || !city.trim() || !pincode.trim()) {
@@ -36,7 +51,44 @@ export default function CheckoutPage() {
             return;
         }
         setError("");
-        router.push("/checkout/success");
+        
+        // Generate Order ID
+        const newOrderId = `ORD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+        
+        // Create new Order
+        const newOrder: Order = {
+            id: newOrderId,
+            date: new Date().toISOString(),
+            total: total,
+            status: "Processing",
+            items: cartItems.map(item => ({
+                id: item.id.toString(),
+                productId: item.id.toString(),
+                name: item.title,
+                price: parseFloat(item.price.replace(/[^0-9.]/g, "")),
+                quantity: item.quantity,
+                image: item.image
+            })),
+            shippingAddress: {
+                id: `addr_${Math.random().toString(36).substr(2, 9)}`,
+                type: addressType === "home" ? "Home" : "Office",
+                fullName: fullName,
+                phone: mobile,
+                streetAddress: address,
+                city: city,
+                state: "", // Optional since form doesn't collect state directly
+                pincode: pincode,
+                isDefault: false
+            },
+            trackingNumber: `TRK${Math.floor(Math.random() * 1000000000)}`,
+            estimatedDelivery: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString() // 5 days from now
+        };
+
+        // Save Order to mockApi
+        const currentOrders = mockApi.getOrders();
+        mockApi.saveOrders([newOrder, ...currentOrders]);
+
+        router.push(`/checkout/success?orderId=${newOrderId}`);
     };
 
     const formatPrice = (amount: number) => `₹${amount.toLocaleString()}`;
@@ -105,6 +157,21 @@ export default function CheckoutPage() {
                                     </button>
                                 </div>
                             </div>
+                            
+                            {user && user.address && user.address.street && (
+                                <label className="flex items-center gap-3 mb-6 p-4 rounded-xl border border-zinc-200 bg-zinc-50 cursor-pointer hover:bg-zinc-100 transition-colors">
+                                    <input 
+                                        type="checkbox" 
+                                        checked={useSavedAddress} 
+                                        onChange={handleUseSavedAddressToggle}
+                                        className="w-4 h-4 rounded text-primary focus:ring-primary border-zinc-300"
+                                    />
+                                    <div className="flex flex-col">
+                                        <span className="text-[13px] font-semibold text-[#1a1a1a]">Use saved address</span>
+                                        <span className="text-[11px] text-zinc-500">{user.address.street}, {user.address.city}</span>
+                                    </div>
+                                </label>
+                            )}
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <input value={fullName} onChange={e => setFullName(e.target.value)} placeholder="Full Name" className="w-full px-4 py-3 bg-zinc-50 border border-zinc-100 rounded-xl text-[13px] focus:ring-2 focus:ring-primary/20 outline-none" />

@@ -34,7 +34,7 @@ const slides = [
     description: "Limited-time offer on premium collections.",
     cta: "Shop Now",
     link: "/shop",
-    image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=1200&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1615886753866-79396abc446e?q=80&w=1200&auto=format&fit=crop",
     bgColor: "bg-zinc-50",
   },
 ];
